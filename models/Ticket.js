@@ -1,12 +1,12 @@
-const mongoose = require('mongoose');
+import mongoose from "mongoose";
 
-const TicketSchema = new mongoose.Schema({
-    participant: { type: mongoose.Schema.Types.ObjectId, ref: 'Participant', required: true },
-    number: { type: Number, required: true },
-    prize: { type: String, required: true },
-    status: { type: String, default: 'Pendiente' },
-    drawDate: { type: Date },
-    prizeImage: { type: String }
+const ticketSchema = new mongoose.Schema({
+  dni: { type: String, required: true },
+  nombre: { type: String, required: true },
+  numeroTicket: { type: String, required: true },
+  comprobante: { type: String },
+  fecha: { type: Date, default: Date.now }
 });
 
-module.exports = mongoose.model('Ticket', TicketSchema);
+// 👇 ESTA LÍNEA ES LA QUE TE FALTABA
+export default mongoose.model("Ticket", ticketSchema);

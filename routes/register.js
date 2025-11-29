@@ -12,7 +12,6 @@ const __dirname = path.dirname(__filename);
 const router = express.Router();
 
 // Configuración de multer para subir comprobantes
-import multer from "multer";
 import { storage } from "../config/cloudinary.js";
 const upload = multer({ storage });
 

@@ -516,7 +516,7 @@
                 formData.append("dni", dniInput.value.trim());
                 formData.append("comprobante", comprobanteFile);
 
-                const response = await fetch("https://sorteo-backend.onrender.com/api/register", {
+                const response = await fetch("https://premios-online.onrender.com/api/register", {
                     method: "POST",
                     body: formData
                 });
@@ -558,7 +558,7 @@
                 return;
             }
 
-            const BACKEND_API_URL = 'https://sorteo-premios.onrender.com/api/tickets';
+            const BACKEND_API_URL = 'https://premios-online.onrender.com/api/tickets';
 
             try {
                 const response = await fetch(`${BACKEND_API_URL}?dni=${dni}`);

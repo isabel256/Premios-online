@@ -1,0 +1,650 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sorteo - Importaciones Davicross S.A.C</title>
+    <link rel="shortcut icon" href="/imagen-catalogo.png" type="image/x-icon">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.13.1/font/bootstrap-icons.min.css">
+    <link rel="stylesheet" href="style.css">
+</head>
+
+
+
+<body>
+
+
+    <button class="back-btn" style="display: none;"><i class="bi bi-arrow-left"></i></button>
+
+    <header class="navbar">
+        <div class="container">
+            <div class="nav-content">
+                <div class="announcement-bar">
+                    <marquee behavior="" direction="">🎉 ¡El sorteo se realizará el miercoles 31 de diciembre a las 3:00
+                        p.m. y se transmitirá por
+                        nuestra página oficial de Facebook: Importaciones Davicross! 🎉</marquee>
+                </div>
+                <nav class="nav-buttons">
+                    <button id="prizes-nav-btn" class="nav-btn" onclick="showScreen('prizes', this)">
+                        <i class="bi bi-trophy"></i><span class="txt-nav">Ver premios</span>
+                    </button>
+                    <button id="tickets-nav-btn" class="nav-btn" onclick="showScreen('tickets', this)">
+                        <i class="bi bi-ticket"></i><span class="txt-nav">Mis tickets</span>
+                    </button>
+                    <button id="whatsapp-btn" class="nav-btn"
+                        onclick="window.location.href='https://wa.me/51967025756' ">
+
+                        <i class="bi bi-whatsapp"></i> <span class="txt-nav">Contáctanos</span>
+                    </button>
+
+                </nav>
+            </div>
+        </div>
+    </header>
+
+    <main class="all-content">
+        <section id="main" class="screen active">
+            <div class="container">
+                <div class="main-content">
+                    <div class="header-section">
+                        <div class="capibara-icon">
+                            <p class="icon_logo_principal">Davicross</p>
+                        </div>
+                        <h1 class="header-title">¡REGÍSTRATE AQUÍ!</h1>
+                        <p class="header-subtitle">Participa en nuestro increíble sorteo por una ¡SUPER MOTO!</p>
+                    </div>
+
+                    <div class="form-section">
+                        <form id="registrationForm" onsubmit="return handleRegistrationAndUpload(event)">
+                            <div class="form-grid">
+                                <div>
+                                    <div class="form-group">
+                                        <label for="dni">DNI / C. de Extranjería</label>
+                                        <input type="text" id="dni" name="dni" placeholder="Ingresa tu documento"
+                                            required>
+                                        <button class="btn-validar" type="button" name="search"
+                                            id="search">Validar</button>
+
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="nombres">Nombres</label>
+                                        <input type="text" id="nombres" name="nombres" placeholder="Tus nombres"
+                                            required>
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="apellidos">Apellidos</label>
+                                        <input type="text" id="apellidos" name="apellidos" placeholder="Tus apellidos"
+                                            required>
+                                    </div>
+                                </div>
+                                <div>
+                                    <div class="form-group">
+                                        <label for="whatsapp-register">Número de WhatsApp</label>
+                                        <input type="tel" id="whatsapp-register" name="whatsapp"
+                                            placeholder="+51 999 999 999" required>
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="departamento">Departamento</label>
+                                        <select id="departamento" name="departamento" required>
+                                            <option value="">Selecciona tu departamento</option>
+                                            <option value="Lima">Lima</option>
+                                            <option value="Arequipa">Arequipa</option>
+                                            <option value="Cusco">Cusco</option>
+                                            <option value="La Libertad">La Libertad</option>
+                                            <option value="Piura">Piura</option>
+                                            <option value="Junín">Junín</option>
+                                            <option value="Lambayeque">Lambayeque</option>
+                                            <option value="Cajamarca">Cajamarca</option>
+                                            <option value="Tumbes">Tumbes</option>
+                                            <option value="Tacna">Tacna</option>
+                                            <option value="Huancayo">Huancayo</option>
+                                            <option value="Huanuco">Huanuco</option>
+                                            <option value="Ayacucho">Ayacucho</option>
+                                            <option value="Amazonas">Amazonas</option>
+                                            <option value="Ucayali">Ucayali</option>
+                                            <option value="Puno">Puno</option>
+                                            <option value="Ica">Ica</option>
+                                            <option value="Ancash">Ancash</option>
+                                            <option value="Loreto">Loreto</option>
+                                            <option value="Madre de Dios">Madre de Dios</option>
+                                            <option value="Apurimac">Apurimac</option>
+                                            <option value="Pasco">Pasco</option>
+                                            <option value="Moquegua">Moquegua</option>
+                                            <option value="San Martin">San Martin</option>
+                                            <option value="Huancavelica">Huancavelica</option>
+                                        </select>
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="comprobante">Adjuntar Comprobante de Pago</label>
+                                        <input type="file" id="comprobante" name="comprobante"
+                                            accept="image/*, application/pdf" required>
+                                    </div>
+                                    <div class="form-group">
+                                        <div class="checkbox-group">
+                                            <input type="checkbox" id="terms" required>
+                                            <label for="terms">Acepto <a href="#"
+                                                    style="color:var(--secondary-color);">términos y
+                                                    condiciones</a></label>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="payment-section">
+                                <h2 class="payment-title">Costo del Ticket</h2>
+                                <div class="cost-display">S/ 10.00</div>
+                                <p class="payment-message">¡Si aún no has realizado tu pago, puedes hacerlo ahora!</p>
+                                <div class="qr-codes">
+                                    <div class="qr-item">
+                                        <img src="https://suministrosperu.com/wp-content/uploads/2016/01/YAPE-QR.png"
+                                            alt="Código QR de Yape" class="qr-code">
+                                        <div class="qr-label">Yape</div>
+                                    </div>
+                                    <div class="qr-item">
+                                        <img src="https://suministrosperu.com/wp-content/uploads/2016/01/YAPE-QR.png"
+                                            alt="Código QR de Plin" class="qr-code">
+                                        <div class="qr-label">Plin</div>
+                                    </div>
+                                </div>
+                                <div class="company-info">
+                                    <strong>Importaciones Davicross S.A.C</strong><br>
+                                    📞 Contacto: +51 967025756<br>
+                                    RUC: 20739903672
+                                </div>
+                                <button type="submit" class="upload-btn">
+                                    <i class="bi bi-upload"> </i> SUBIR COMPROBANTE Y REGISTRAR
+                                </button>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="prizes" class="screen">
+            <div class="container">
+                <div class="main-content">
+                    <div class="header-section">
+                        <h2 class="header-title"><i class="bi bi-trophy-fill"></i> PREMIOS INCREÍBLES</h2>
+                        <p class="header-subtitle">¡Mira lo que puedes ganar en nuestro sorteo!</p>
+                    </div>
+                    <div class="prizes-grid">
+                        <div class="prize-card">
+                            <div class="prize-image">
+                                <img src="https://i.ytimg.com/vi/t_cepBoA3vQ/maxresdefault.jpg"
+                                    alt="Premio Casa de 3 habitaciones">
+
+                            </div>
+                            <div class="prize-info">
+                                <h3 class="prize-title">Casa de 3 habitaciones</h3>
+                                <p class="prize-value">Valor: S/ 350,000</p>
+                                <button class="buy-ticket-btn" onclick="navigateTo('main')">
+                                    <i class="bi bi-cart-fill"></i> Comprar Ticket
+                                </button>
+                            </div>
+                        </div>
+                        <div class="prize-card">
+                            <div class="prize-image">
+                                <img src="https://www.toyotaperu.com.pe/sites/default/files/360/avanza22_blancow09_00.jpg"
+                                    alt="Premio Automóvil Toyota">
+                            </div>
+                            <div class="prize-info">
+                                <h3 class="prize-title">Automóvil Toyota Yaris</h3>
+                                <p class="prize-value">Valor: S/ 80,000</p>
+                                <button class="buy-ticket-btn" onclick="navigateTo('main')">
+                                    <i class="bi bi-cart-fill"></i> Comprar Ticket
+                                </button>
+                            </div>
+                        </div>
+                        <div class="prize-card">
+                            <div class="prize-image">
+                                <img src="https://www.yamaha-motor.com.pe/file/v4685047748609769303/general/bloque01_r15_abs_peru.jpg"
+                                    alt="Premio Motocicleta Yamaha">
+                            </div>
+                            <div class="prize-info">
+                                <h3 class="prize-title">Motocicleta Yamaha R15</h3>
+                                <p class="prize-value">Valor: S/ 12,000</p>
+                                <button class="buy-ticket-btn" onclick="navigateTo('main')">
+                                    <i class="bi bi-cart-fill"></i> Comprar Ticket
+                                </button>
+                            </div>
+                        </div>
+                        <div class="prize-card">
+                            <div class="prize-image">
+                                <img src="https://static8.depositphotos.com/1006899/896/i/450/depositphotos_8961765-stock-photo-prize.jpg"
+                                    alt="Premio Dinero en efectivo">
+                            </div>
+                            <div class="prize-info">
+                                <h3 class="prize-title">Premio en efectivo</h3>
+                                <p class="prize-value">Valor: S/ 25,000</p>
+                                <button class="buy-ticket-btn" onclick="navigateTo('main')">
+                                    <i class="bi bi-cart-fill"></i> Comprar Ticket
+                                </button>
+                            </div>
+                        </div>
+                        <div class="prize-card">
+                            <div class="prize-image">
+                                <img src="https://market-resized.envatousercontent.com/previews/files/460537976/590.jpg?w=590&h=590&cf_fit=crop&crop=top&format=auto&q=85&s=9768beaa32033d61611eb94d42e6192b5b2fdf0005123a057f52ec37c0bde78b"
+                                    alt="Premio iPhone 15 Pro Max">
+                            </div>
+                            <div class="prize-info">
+                                <h3 class="prize-title">iPhone 15 Pro Max</h3>
+                                <p class="prize-value">Valor: S/ 6,000</p>
+                                <button class="buy-ticket-btn" onclick="navigateTo('main')">
+                                    <i class="bi bi-cart-fill"></i> Comprar Ticket
+                                </button>
+                            </div>
+                        </div>
+                        <div class="prize-card">
+                            <div class="prize-image">
+                                <img src="https://www.shutterstock.com/image-photo/man-giving-dollar-banknotes-woman-600nw-2581188037.jpg"
+                                    alt="Premio Dinero en efectivo">
+                            </div>
+                            <div class="prize-info">
+                                <h3 class="prize-title">Tercer Premio</h3>
+                                <p class="prize-value">Valor: S/ 5,000</p>
+                                <button class="buy-ticket-btn" onclick="navigateTo('main')">
+                                    <i class="bi bi-cart-fill"></i> Comprar Ticket
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="tickets" class="screen">
+            <div class="container">
+                <div class="main-content tickets-section">
+                    <h2 class="tickets-title"><i class="bi bi-ticket-fill"></i>MIS TICKETS</h2>
+                    <p>Ingresa tu DNI para ver los números de ticket que tienes asignados.</p>
+
+                    <div class="consultation-form">
+                        <div class="form-group">
+                            <label for="dni-consult">DNI / C. de Extranjería</label>
+                            <input type="text" id="dniConsult" placeholder="Ingresa tu documento" required>
+                        </div>
+                        <button class="consult-btn" onclick="consultTickets()">
+                            <i class="bi bi-search"></i> Consultar Tickets
+                        </button>
+
+                        <div id="consultResults" style="display:none;">
+                            <h4>Resultados para DNI: <span id="resultDni"></span></h4>
+                            <p id="resultName"></p>
+                            <p>Tus Tickets Adquiridos:</p>
+                            <ul class="ticket-list" id="ticketList">
+                                <!-- Aqui va la lista de tickets -->
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+
+        <div class="after" id="after-sorteo">
+            <p>¡Ups! El tiempo ha terminado. Gracias por participar.</p>
+        </div>
+
+
+    </main>
+
+    <footer class="footer">
+        <div class="container">
+            <h3>Tiempo restante para el Sorteo</h3>
+            <div id="countdown">
+                <div class="countdown-item">
+                    <span id="days">00</span>
+                    <div>DÍAS</div>
+                </div>
+                <div class="countdown-item">
+                    <span id="hours">00</span>
+                    <div>HRS</div>
+                </div>
+                <div class="countdown-item">
+                    <span id="minutes">00</span>
+                    <div>MIN</div>
+                </div>
+                <div class="countdown-item">
+                    <span id="seconds">00</span>
+                    <div>SEG</div>
+                </div>
+            </div>
+            <div class="social-links">
+                <a href="https://www.tiktok.com/@tu_cuenta" target="_blank" class="social-btn tiktok">
+                    <i class="bi bi-tiktok"></i> TikTok
+                </a>
+                <a href="https://www.facebook.com/tu_pagina" target="_blank" class="social-btn facebook">
+                    <i class="bi bi-facebook"></i> Facebook
+                </a>
+            </div>
+            <p>&copy; 2026 Importaciones Davicross S.A.C. Todos los derechos reservados.</p>
+            <div class="legal-links">
+                <a href="#">Política de Privacidad</a> | <a href="#">Términos y Condiciones</a>
+            </div>
+        </div>
+    </footer>
+
+
+    <div id="popup-message" class="message-popup hide"></div>
+
+    <script>
+
+
+
+
+
+
+        const screens = document.querySelectorAll('.screen');
+        const navButtons = document.querySelectorAll('.nav-btn');
+        const backBtn = document.querySelector('.back-btn');
+        const searchDni = document.querySelector('#search');
+        let currentScreenId = 'main'; // Pantalla inicial
+        let dniValidado = false;
+        function traer() {
+            const dni = document.getElementById('dni').value.trim();
+
+            if (dni.length !== 8 || isNaN(dni)) {
+                showTemporaryMessage("El DNI debe tener 8 dígitos", "error");
+                return;
+            }
+
+            const token = "efa2d305488bda6125313d9c889b98cbac53441707779692290fc2247c650239"; // ← REEMPLAZA CON TU TOKEN REAL
+
+            fetch(`https://apiperu.dev/api/dni/${dni}?api_token=${token}`)
+                .then(res => res.json())
+                .then(data => {
+                    if (data.success === true) {
+                        document.getElementById('nombres').value = data.data.nombres;
+                        document.getElementById('apellidos').value =
+                            data.data.apellido_paterno + " " + data.data.apellido_materno;
+
+                        // bloqueo de campos
+
+                        document.getElementById('nombres').disabled = true;
+                        document.getElementById('apellidos').disabled = true;
+
+                        dniValidado = true;
+
+                        showTemporaryMessage("DNI Validado correctamente", "success");
+                    } else {
+                        showTemporaryMessage("DNI no encontrado", "error");
+                    }
+                })
+                .catch(err => {
+                    console.error(err);
+                    showTemporaryMessage("Error al conectar con la API", "error");
+                });
+        }
+
+        searchDni.addEventListener('click', traer);
+
+
+
+
+        function showScreen(id, targetButton = null) {
+            screens.forEach(screen => {
+                screen.classList.remove('active');
+            });
+
+            const targetScreen = document.getElementById(id);
+            if (targetScreen) {
+                targetScreen.classList.add('active');
+                currentScreenId = id;
+            }
+
+            backBtn.style.display = id === 'main' ? 'none' : 'flex';
+
+            navButtons.forEach(btn => btn.classList.remove('active-nav'));
+
+            if (id === 'main') {
+                document.getElementById('prizes-nav-btn').classList.remove('active-nav');
+                document.getElementById('tickets-nav-btn').classList.remove('active-nav');
+            } else if (id === 'prizes') {
+                document.getElementById('prizes-nav-btn').classList.add('active-nav');
+            } else if (id === 'tickets') {
+                document.getElementById('tickets-nav-btn').classList.add('active-nav');
+            }
+
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+        }
+
+        function navigateTo(id) {
+            showScreen(id);
+        }
+
+        backBtn.addEventListener('click', () => {
+            showScreen('main');
+        });
+
+
+
+
+        // ----------------------------------------------------
+        // CONTADOR REGRESIVO 
+        // ----------------------------------------------------
+
+        const countdownDate = new Date("December 30, 2025 15:00:00").getTime();
+        const countdownElement = document.getElementById("countdown");
+        const afterOverlay = document.getElementById("after-sorteo");
+
+        function updateCountdown() {
+            const now = new Date().getTime();
+            const distance = countdownDate - now;
+
+            if (distance < 0) {
+                clearInterval(countdownInterval);
+                countdownElement.innerHTML = "¡SORTEO FINALIZADO!";
+                afterOverlay.style.display = 'flex';
+                return;
+            }
+
+            const days = Math.floor(distance / (1000 * 60 * 60 * 24));
+            const hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+            const minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+            const seconds = Math.floor((distance % (1000 * 60)) / 1000);
+
+            const format = num => num < 10 ? "0" + num : num;
+
+            document.getElementById("days").innerText = format(days);
+            document.getElementById("hours").innerText = format(hours);
+            document.getElementById("minutes").innerText = format(minutes);
+            document.getElementById("seconds").innerText = format(seconds);
+        }
+
+        updateCountdown();
+        const countdownInterval = setInterval(updateCountdown, 1000);
+
+        // ----------------------------------------------------
+        // UTILERÍA: POPUP DE MENSAJES 
+        // ----------------------------------------------------
+        function showTemporaryMessage(message, type = 'info') {
+            const popup = document.getElementById('popup-message');
+            popup.textContent = message;
+            popup.className = `message-popup ${type}`;
+            popup.classList.remove('hide');
+
+            clearTimeout(popup.timeoutId);
+            popup.timeoutId = setTimeout(() => {
+                popup.classList.add('hide');
+            }, 4000);
+        }
+        document.addEventListener('DOMContentLoaded', (event) => {
+            // Retrasamos la aparición 500ms (medio segundo) para que la página cargue bien
+            setTimeout(() => {
+                const modal = document.getElementById('modalAnuncio');
+                if (modal) {
+                    modal.showModal();
+                }
+            }, 500);
+        });
+
+        document.addEventListener('DOMContentLoaded', () => {
+            showScreen('main');
+        });
+        async function handleRegistrationAndUpload(event) {
+            event.preventDefault();
+
+            const dniInput = document.getElementById('dni');
+            const nombresInput = document.getElementById('nombres');
+            const apellidosInput = document.getElementById('apellidos');
+            const comprobanteFile = document.getElementById('comprobante').files[0];
+            const termsChecked = document.getElementById('terms').checked;
+
+            if (!dniValidado) {
+                showTemporaryMessage("⚠️ Primero valida tu DNI.", "error");
+                return false;
+            }
+
+            if (!comprobanteFile) {
+                showTemporaryMessage("⚠️ Debes subir tu comprobante.", "error");
+                return false;
+            }
+
+            if (!termsChecked) {
+                showTemporaryMessage("⚠️ Debes aceptar los términos.", "error");
+                return false;
+            }
+
+            const uploadButton = document.querySelector('.upload-btn');
+            uploadButton.disabled = true;
+            showTemporaryMessage("⌛ Enviando datos...", "info");
+
+            try {
+                const formData = new FormData();
+                formData.append("dni", dniInput.value.trim());
+                formData.append("comprobante", comprobanteFile);
+
+                const response = await fetch("https://sorteo-backend.onrender.com/api/register", {
+                    method: "POST",
+                    body: formData
+                });
+
+                const data = await response.json();
+                uploadButton.disabled = false;
+
+                if (response.ok && data.success) {
+                    showTemporaryMessage(`✅ Registro exitoso. Ticket #${data.ticket}`, "success");
+                    document.getElementById('registrationForm').reset();
+                    dniValidado = false;
+                    dniInput.disabled = false;
+                    nombresInput.disabled = false;
+                    apellidosInput.disabled = false;
+                } else {
+                    showTemporaryMessage(`❌ ${data.message || "Error desconocido"}`, "error");
+                }
+
+            } catch (error) {
+                console.error(error);
+                uploadButton.disabled = false;
+                showTemporaryMessage("❌ Error de conexión con el servidor.", "error");
+            }
+        }
+
+
+        async function consultTickets() {
+            const dni = document.getElementById('dniConsult').value.trim();
+            const ticketList = document.getElementById('ticketList');
+            const resultBox = document.getElementById('consultResults');
+
+            ticketList.innerHTML = '<li>Buscando tickets...</li>';
+            document.getElementById('resultDni').textContent = 'Consultando...';
+            document.getElementById('resultName').textContent = '';
+
+            if (!dni || dni.length !== 8 || isNaN(dni)) {
+                showTemporaryMessage('❌ Por favor, ingrese un DNI válido de 8 dígitos.', 'error');
+                ticketList.innerHTML = '';
+                return;
+            }
+
+            const BACKEND_API_URL = 'https://sorteo-premios.onrender.com/api/tickets';
+
+            try {
+                const response = await fetch(`${BACKEND_API_URL}?dni=${dni}`);
+                const data = await response.json();
+
+                // Mostrar contenedor
+                resultBox.style.display = 'block';
+
+                if (data.success) {
+                    ticketList.innerHTML = '';
+                    document.getElementById('resultDni').textContent = dni;
+                    document.getElementById('resultName').textContent = `Participante: ${data.name || 'N/A'}`;
+
+                    if (data.tickets && data.tickets.length > 0) {
+                        data.tickets.forEach(ticket => {
+                            const li = document.createElement('li');
+                            li.innerHTML = `
+                        <div class="ticket-detail-card">
+
+                            <span class="ticket-status" 
+                                style="background:${ticket.status === 'Ganador'
+                                    ? 'var(--secondary-color)'
+                                    : 'var(--success-color)'};">
+                                ${ticket.status}
+                            </span>
+
+                            <div class="ticket-header">
+                                <div class="ticket-institution">
+                                    <i class="bi bi-bank"></i> 
+                                    ${ticket.institution || 'Institución No Definida'}
+                                </div>
+                                <div class="ticket-number-box">
+                                    #${ticket.number}
+                                </div>
+                            </div>
+
+                            <div class="ticket-body">
+                                <img src="${ticket.prizeImage || ''}" class="ticket-prize-img">
+
+                                <div class="ticket-info">
+                                    <span class="info-label">Detalles del Sorteo:</span>
+                                    <span class="info-value">${ticket.prize || 'Premio Desconocido'}</span>
+
+                                    <span class="info-label">Fecha del Sorteo:</span>
+                                    <span class="info-value">${ticket.drawDate || 'N/A'}</span>
+
+                                    <span class="info-label">Estado:</span>
+                                    <span class="info-value">Actualmente ${ticket.status} (1 Fracción)</span>
+                                </div>
+                            </div>
+
+                        </div>
+                    `;
+                            ticketList.appendChild(li);
+                        });
+
+                        showTemporaryMessage(`✅ ${data.tickets.length} ticket(s) encontrado(s).`, 'success');
+
+                    } else {
+                        ticketList.innerHTML = `
+                    <li><p>No se encontraron tickets registrados con este DNI.</p></li>
+                `;
+                        showTemporaryMessage('ℹ️ DNI sin tickets asignados.', 'info');
+                    }
+
+                } else {
+                    ticketList.innerHTML = `
+                <li><p>${data.message || 'Error al consultar tickets.'}</p></li>
+            `;
+                    showTemporaryMessage(`❌ ${data.message || 'Error desconocido.'}`, 'error');
+                }
+
+            } catch (error) {
+                console.error('Error en la consulta de tickets:', error);
+                ticketList.innerHTML = `
+            <li><p>Error de conexión con el servidor.</p></li>
+        `;
+                showTemporaryMessage('❌ Error de red o servidor.', 'error');
+            }
+        }
+
+
+
+
+    </script>
+
+</body>
+
+</html>

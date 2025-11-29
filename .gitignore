@@ -1,0 +1,7 @@
+# Node
+node_modules/
+.env
+uploads/
+
+# Sistema
+.DS_Store

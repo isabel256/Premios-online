@@ -375,8 +375,9 @@
 
                 if (response.ok && data.success === true) {
                     // Datos recibidos de tu backend (donde se ocultó el token)
-                    nombresInput.value = data.nombres;
-                    apellidosInput.value = data.apellidos;
+                    const nameParts = data.name.split(" ");
+                    nombresInput.value = nameParts.slice(0, -2).join(" ") || ""; // Todos los nombres
+                    apellidosInput.value = nameParts.slice(-2).join(" ") || "";   // Apellidos
 
                     // Bloqueo de campos después de la validación exitosa (mejor uso de readonly)
                     dniInput.setAttribute('readonly', true);

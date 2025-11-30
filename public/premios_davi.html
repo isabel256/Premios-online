@@ -21,7 +21,7 @@
         <div class="container">
             <div class="nav-content">
                 <div class="announcement-bar">
-                    <marquee behavior="" direction="">🎉 ¡El sorteo se realizará el miercoles 31 de diciembre a las 3:00
+                    <marquee behavior="scroll" direction="left">🎉 ¡El sorteo se realizará el miercoles 31 de diciembre a las 3:00
                         p.m. y se transmitirá por
                         nuestra página oficial de Facebook: Importaciones Davicross! 🎉</marquee>
                 </div>
@@ -49,7 +49,7 @@
                 <div class="main-content">
                     <div class="header-section">
                         <div class="capibara-icon">
-                            <p class="icon_logo_principal">Davicross</p>
+                            <h2 class="icon_logo_principal">Davicross</h2>
                         </div>
                         <h1 class="header-title">¡REGÍSTRATE AQUÍ!</h1>
                         <p class="header-subtitle">Participa en nuestro increíble sorteo por una ¡SUPER MOTO!</p>
@@ -59,24 +59,23 @@
                         <form id="registrationForm" onsubmit="return handleRegistrationAndUpload(event)">
                             <div class="form-grid">
                                 <div>
-                                    <div class="form-group">
+                                    <div class="form-group dni-group">
                                         <label for="dni">DNI / C. de Extranjería</label>
-                                        <input type="text" id="dni" name="dni" placeholder="Ingresa tu documento"
-                                            required>
-                                        <button class="btn-validar" type="button" name="search"
-                                            id="search">Validar</button>
-
+                                        <div class="input-with-button">
+                                            <input type="text" id="dni" name="dni" placeholder="Ingresa tu documento"
+                                                inputmode="numeric" pattern="\d{8}" maxlength="8" required>
+                                            <button class="btn-validar" type="button" name="search"
+                                                id="search">Validar</button>
+                                        </div>
                                     </div>
                                     <div class="form-group">
                                         <label for="nombres">Nombres</label>
                                         <input type="text" id="nombres" name="nombres" placeholder="Tus nombres"
-                                            required>
-                                    </div>
+                                            required disabled> </div>
                                     <div class="form-group">
                                         <label for="apellidos">Apellidos</label>
                                         <input type="text" id="apellidos" name="apellidos" placeholder="Tus apellidos"
-                                            required>
-                                    </div>
+                                            required disabled> </div>
                                 </div>
                                 <div>
                                     <div class="form-group">
@@ -138,12 +137,12 @@
                                 <div class="qr-codes">
                                     <div class="qr-item">
                                         <img src="https://suministrosperu.com/wp-content/uploads/2016/01/YAPE-QR.png"
-                                            alt="Código QR de Yape" class="qr-code">
+                                            alt="Código QR para pagar con Yape" class="qr-code">
                                         <div class="qr-label">Yape</div>
                                     </div>
                                     <div class="qr-item">
                                         <img src="https://suministrosperu.com/wp-content/uploads/2016/01/YAPE-QR.png"
-                                            alt="Código QR de Plin" class="qr-code">
+                                            alt="Código QR para pagar con Plin" class="qr-code">
                                         <div class="qr-label">Plin</div>
                                     </div>
                                 </div>
@@ -152,7 +151,7 @@
                                     📞 Contacto: +51 967025756<br>
                                     RUC: 20739903672
                                 </div>
-                                <button type="submit" class="upload-btn">
+                                <button type="submit" class="upload-btn" disabled id="submitBtn">
                                     <i class="bi bi-upload"> </i> SUBIR COMPROBANTE Y REGISTRAR
                                 </button>
                             </div>
@@ -173,7 +172,7 @@
                         <div class="prize-card">
                             <div class="prize-image">
                                 <img src="https://i.ytimg.com/vi/t_cepBoA3vQ/maxresdefault.jpg"
-                                    alt="Premio Casa de 3 habitaciones">
+                                    alt="Casa de 3 habitaciones, Primer Premio">
 
                             </div>
                             <div class="prize-info">
@@ -187,7 +186,7 @@
                         <div class="prize-card">
                             <div class="prize-image">
                                 <img src="https://www.toyotaperu.com.pe/sites/default/files/360/avanza22_blancow09_00.jpg"
-                                    alt="Premio Automóvil Toyota">
+                                    alt="Automóvil Toyota Yaris, Segundo Premio">
                             </div>
                             <div class="prize-info">
                                 <h3 class="prize-title">Automóvil Toyota Yaris</h3>
@@ -200,7 +199,7 @@
                         <div class="prize-card">
                             <div class="prize-image">
                                 <img src="https://www.yamaha-motor.com.pe/file/v4685047748609769303/general/bloque01_r15_abs_peru.jpg"
-                                    alt="Premio Motocicleta Yamaha">
+                                    alt="Motocicleta Yamaha R15, Tercer Premio">
                             </div>
                             <div class="prize-info">
                                 <h3 class="prize-title">Motocicleta Yamaha R15</h3>
@@ -213,7 +212,7 @@
                         <div class="prize-card">
                             <div class="prize-image">
                                 <img src="https://static8.depositphotos.com/1006899/896/i/450/depositphotos_8961765-stock-photo-prize.jpg"
-                                    alt="Premio Dinero en efectivo">
+                                    alt="Premio en efectivo S/ 25,000">
                             </div>
                             <div class="prize-info">
                                 <h3 class="prize-title">Premio en efectivo</h3>
@@ -226,7 +225,7 @@
                         <div class="prize-card">
                             <div class="prize-image">
                                 <img src="https://market-resized.envatousercontent.com/previews/files/460537976/590.jpg?w=590&h=590&cf_fit=crop&crop=top&format=auto&q=85&s=9768beaa32033d61611eb94d42e6192b5b2fdf0005123a057f52ec37c0bde78b"
-                                    alt="Premio iPhone 15 Pro Max">
+                                    alt="iPhone 15 Pro Max">
                             </div>
                             <div class="prize-info">
                                 <h3 class="prize-title">iPhone 15 Pro Max</h3>
@@ -239,7 +238,7 @@
                         <div class="prize-card">
                             <div class="prize-image">
                                 <img src="https://www.shutterstock.com/image-photo/man-giving-dollar-banknotes-woman-600nw-2581188037.jpg"
-                                    alt="Premio Dinero en efectivo">
+                                    alt="Premio en efectivo S/ 5,000">
                             </div>
                             <div class="prize-info">
                                 <h3 class="prize-title">Tercer Premio</h3>
@@ -263,7 +262,8 @@
                     <div class="consultation-form">
                         <div class="form-group">
                             <label for="dni-consult">DNI / C. de Extranjería</label>
-                            <input type="text" id="dniConsult" placeholder="Ingresa tu documento" required>
+                            <input type="text" id="dniConsult" placeholder="Ingresa tu documento" inputmode="numeric"
+                                pattern="\d{8}" maxlength="8" required>
                         </div>
                         <button class="consult-btn" onclick="consultTickets()">
                             <i class="bi bi-search"></i> Consultar Tickets
@@ -274,8 +274,7 @@
                             <p id="resultName"></p>
                             <p>Tus Tickets Adquiridos:</p>
                             <ul class="ticket-list" id="ticketList">
-                                <!-- Aqui va la lista de tickets -->
-                            </ul>
+                                </ul>
                         </div>
                     </div>
                 </div>
@@ -312,10 +311,10 @@
                 </div>
             </div>
             <div class="social-links">
-                <a href="https://www.tiktok.com/@tu_cuenta" target="_blank" class="social-btn tiktok">
+                <a href="https://www.tiktok.com/@ImportacionesDavicross" target="_blank" class="social-btn tiktok">
                     <i class="bi bi-tiktok"></i> TikTok
                 </a>
-                <a href="https://www.facebook.com/tu_pagina" target="_blank" class="social-btn facebook">
+                <a href="https://www.facebook.com/ImportacionesDavicross" target="_blank" class="social-btn facebook">
                     <i class="bi bi-facebook"></i> Facebook
                 </a>
             </div>
@@ -330,59 +329,90 @@
     <div id="popup-message" class="message-popup hide"></div>
 
     <script>
-
-
-
-
-
+        // --- URLs y Endpoints ---
+        // Se define un nuevo endpoint SECURO para la validación de DNI
+        const DNI_VALIDATE_API_URL = 'https://premios-online.onrender.com/api/validate-dni';
+        const BACKEND_API_URL = 'https://premios-online.onrender.com/api/register';
+        const TICKETS_API_URL = 'https://premios-online.onrender.com/api/tickets';
 
         const screens = document.querySelectorAll('.screen');
         const navButtons = document.querySelectorAll('.nav-btn');
         const backBtn = document.querySelector('.back-btn');
-        const searchDni = document.querySelector('#search');
+        const searchDniBtn = document.querySelector('#search'); // Renombrado para claridad
+        const dniInput = document.getElementById('dni');
+        const nombresInput = document.getElementById('nombres');
+        const apellidosInput = document.getElementById('apellidos');
+        const submitButton = document.getElementById('submitBtn');
+
         let currentScreenId = 'main'; // Pantalla inicial
         let dniValidado = false;
-        function traer() {
-            const dni = document.getElementById('dni').value.trim();
+
+        // ----------------------------------------------------
+        // FUNCIÓN DE VALIDACIÓN DE DNI (Ajustada para seguridad)
+        // ----------------------------------------------------
+        async function traer() {
+            const dni = dniInput.value.trim();
 
             if (dni.length !== 8 || isNaN(dni)) {
-                showTemporaryMessage("El DNI debe tener 8 dígitos", "error");
+                showTemporaryMessage("El DNI debe tener 8 dígitos numéricos", "error");
                 return;
             }
 
-            const token = "efa2d305488bda6125313d9c889b98cbac53441707779692290fc2247c650239"; // ← REEMPLAZA CON TU TOKEN REAL
+            dniInput.disabled = true; // Deshabilitar DNI mientras se valida
+            searchDniBtn.disabled = true;
+            showTemporaryMessage("⌛ Validando DNI...", "info");
 
-            fetch(`https://apiperu.dev/api/dni/${dni}?api_token=${token}`)
-                .then(res => res.json())
-                .then(data => {
-                    if (data.success === true) {
-                        document.getElementById('nombres').value = data.data.nombres;
-                        document.getElementById('apellidos').value =
-                            data.data.apellido_paterno + " " + data.data.apellido_materno;
 
-                        // bloqueo de campos
+            try {
+                // LLAMADA AL NUEVO ENDPOINT SEGURO EN EL BACKEND
+                const response = await fetch(`${DNI_VALIDATE_API_URL}?dni=${dni}`);
+                const data = await response.json();
 
-                        document.getElementById('nombres').disabled = true;
-                        document.getElementById('apellidos').disabled = true;
+                dniInput.disabled = false; // Habilitar DNI de nuevo
 
-                        dniValidado = true;
+                if (response.ok && data.success === true) {
+                    // Datos recibidos de tu backend (donde se ocultó el token)
+                    nombresInput.value = data.nombres;
+                    apellidosInput.value = data.apellidos;
 
-                        showTemporaryMessage("DNI Validado correctamente", "success");
-                    } else {
-                        showTemporaryMessage("DNI no encontrado", "error");
-                    }
-                })
-                .catch(err => {
-                    console.error(err);
-                    showTemporaryMessage("Error al conectar con la API", "error");
-                });
+                    // Bloqueo de campos después de la validación exitosa (mejor uso de readonly)
+                    dniInput.setAttribute('readonly', true);
+                    searchDniBtn.style.display = 'none'; // Ocultar el botón de validar
+                    nombresInput.setAttribute('readonly', true);
+                    apellidosInput.setAttribute('readonly', true);
+
+                    // Habilitar campos restantes y botón de registro
+                    nombresInput.disabled = false;
+                    apellidosInput.disabled = false;
+                    submitButton.disabled = false;
+                    dniValidado = true;
+
+                    showTemporaryMessage("DNI Validado correctamente. Completa el registro.", "success");
+                } else {
+                    // Limpieza y manejo de errores
+                    nombresInput.value = '';
+                    apellidosInput.value = '';
+                    nombresInput.disabled = true;
+                    apellidosInput.disabled = true;
+                    submitButton.disabled = true;
+                    dniInput.removeAttribute('readonly');
+                    searchDniBtn.style.display = 'inline-block'; // Mostrar botón de nuevo
+                    searchDniBtn.disabled = false;
+                    dniValidado = false;
+                    showTemporaryMessage(data.message || "DNI no encontrado o error en la validación", "error");
+                }
+            } catch (err) {
+                console.error(err);
+                dniInput.disabled = false;
+                searchDniBtn.disabled = false;
+                showTemporaryMessage("Error de conexión con el servidor de validación", "error");
+            }
         }
 
-        searchDni.addEventListener('click', traer);
+        searchDniBtn.addEventListener('click', traer);
 
 
-
-
+        // --- Funciones de Navegación (sin cambios) ---
         function showScreen(id, targetButton = null) {
             screens.forEach(screen => {
                 screen.classList.remove('active');
@@ -419,10 +449,8 @@
         });
 
 
-
-
         // ----------------------------------------------------
-        // CONTADOR REGRESIVO 
+        // CONTADOR REGRESIVO (sin cambios)
         // ----------------------------------------------------
 
         const countdownDate = new Date("December 30, 2025 15:00:00").getTime();
@@ -457,7 +485,7 @@
         const countdownInterval = setInterval(updateCountdown, 1000);
 
         // ----------------------------------------------------
-        // UTILERÍA: POPUP DE MENSAJES 
+        // UTILERÍA: POPUP DE MENSAJES (sin cambios)
         // ----------------------------------------------------
         function showTemporaryMessage(message, type = 'info') {
             const popup = document.getElementById('popup-message');
@@ -483,80 +511,82 @@
         document.addEventListener('DOMContentLoaded', () => {
             showScreen('main');
         });
-      async function handleRegistrationAndUpload(event) {
-    event.preventDefault();
 
-    const dniInput = document.getElementById('dni');
-    const nombresInput = document.getElementById('nombres');
-    const apellidosInput = document.getElementById('apellidos');
-    const comprobanteFile = document.getElementById('comprobante').files[0];
-    const termsChecked = document.getElementById('terms').checked;
 
-    if (!dniValidado) {
-        showTemporaryMessage("⚠️ Primero valida tu DNI.", "error");
-        return false;
-    }
+        // ----------------------------------------------------
+        // REGISTRO Y SUBIDA (Ajustado)
+        // ----------------------------------------------------
+        async function handleRegistrationAndUpload(event) {
+            event.preventDefault();
 
-    if (!comprobanteFile) {
-        showTemporaryMessage("⚠️ Debes subir tu comprobante.", "error");
-        return false;
-    }
+            const comprobanteFile = document.getElementById('comprobante').files[0];
+            const termsChecked = document.getElementById('terms').checked;
 
-    if (!termsChecked) {
-        showTemporaryMessage("⚠️ Debes aceptar los términos.", "error");
-        return false;
-    }
-
-    const uploadButton = document.querySelector('.upload-btn');
-    uploadButton.disabled = true;
-    showTemporaryMessage("⌛ Enviando datos...", "info");
-
-    try {
-        const formData = new FormData();
-        formData.append("dni", dniInput.value.trim());
-        formData.append("comprobante", comprobanteFile);
-
-        const response = await fetch("https://premios-online.onrender.com/api/register", {
-            method: "POST",
-            body: formData
-        });
-
-        const data = await response.json();
-        uploadButton.disabled = false;
-
-        if (response.ok && data.success) {
-            // ✅ Manejo seguro del ticket
-            let ticketDisplay = "N/A";
-            if (data.ticket) {
-                if (typeof data.ticket === "object") {
-                    // Si el ticket es un objeto, mostramos la propiedad número si existe
-                    ticketDisplay = data.ticket.number || JSON.stringify(data.ticket);
-                } else {
-                    ticketDisplay = data.ticket;
-                }
+            if (!dniValidado) {
+                showTemporaryMessage("⚠️ Por favor, valida tu DNI primero.", "error");
+                return false;
+            }
+            if (!comprobanteFile) {
+                showTemporaryMessage("⚠️ Debes subir tu comprobante de pago.", "error");
+                return false;
+            }
+            if (!termsChecked) {
+                showTemporaryMessage("⚠️ Debes aceptar los términos y condiciones.", "error");
+                return false;
             }
 
-            showTemporaryMessage(`✅ Registro exitoso. Ticket #${ticketDisplay}`, "success");
+            submitButton.disabled = true;
+            showTemporaryMessage("⌛ Enviando datos y subiendo comprobante...", "info");
 
-            // Reset de formulario y desbloqueo de inputs
-            document.getElementById('registrationForm').reset();
-            dniValidado = false;
-            dniInput.disabled = false;
-            nombresInput.disabled = false;
-            apellidosInput.disabled = false;
-        } else {
-            showTemporaryMessage(`❌ ${data.message || "Error desconocido"}`, "error");
+            try {
+                const formData = new FormData();
+                // Usamos el valor del input DNI readonly
+                formData.append("dni", dniInput.value.trim()); 
+                formData.append("whatsapp", document.getElementById('whatsapp-register').value.trim()); // Añadido whatsapp para que el backend lo guarde
+                formData.append("departamento", document.getElementById('departamento').value); // Añadido departamento
+                formData.append("comprobante", comprobanteFile);
+
+                const response = await fetch(BACKEND_API_URL, {
+                    method: "POST",
+                    body: formData
+                });
+
+                const data = await response.json();
+                submitButton.disabled = false;
+
+                if (response.ok && data.success) {
+                    const ticketNumber = data.ticket; // Asegurarse de que el backend solo devuelva el número
+                    showTemporaryMessage(`✅ ¡Felicidades! Registro exitoso. Tu Ticket es #${ticketNumber}`, "success");
+
+                    // Resetear el formulario y el estado de validación
+                    document.getElementById('registrationForm').reset();
+                    dniValidado = false;
+                    
+                    // Restaurar campos a su estado inicial
+                    dniInput.removeAttribute('readonly');
+                    searchDniBtn.style.display = 'inline-block';
+                    nombresInput.removeAttribute('readonly');
+                    apellidosInput.removeAttribute('readonly');
+                    nombresInput.disabled = true;
+                    apellidosInput.disabled = true;
+                    submitButton.disabled = true;
+
+                } else {
+                    showTemporaryMessage(`❌ ${data.message || "Error desconocido en el registro"}`, "error");
+                }
+
+            } catch (error) {
+                console.error(error);
+                submitButton.disabled = false;
+                showTemporaryMessage("❌ Error de conexión con el servidor de registro.", "error");
+            }
+            return false;
         }
 
-    } catch (error) {
-        console.error(error);
-        uploadButton.disabled = false;
-        showTemporaryMessage("❌ Error de conexión con el servidor.", "error");
-    }
-}
 
-
-
+        // ----------------------------------------------------
+        // CONSULTA DE TICKETS (sin cambios)
+        // ----------------------------------------------------
         async function consultTickets() {
             const dni = document.getElementById('dniConsult').value.trim();
             const ticketList = document.getElementById('ticketList');
@@ -572,10 +602,8 @@
                 return;
             }
 
-            const BACKEND_API_URL = 'https://premios-online.onrender.com/api/tickets';
-
             try {
-                const response = await fetch(`${BACKEND_API_URL}?dni=${dni}`);
+                const response = await fetch(`${TICKETS_API_URL}?dni=${dni}`);
                 const data = await response.json();
 
                 // Mostrar contenedor
@@ -594,8 +622,8 @@
 
                             <span class="ticket-status" 
                                 style="background:${ticket.status === 'Ganador'
-                                    ? 'var(--secondary-color)'
-                                    : 'var(--success-color)'};">
+                                        ? 'var(--secondary-color)'
+                                        : 'var(--success-color)'};">
                                 ${ticket.status}
                             </span>
 
@@ -610,7 +638,7 @@
                             </div>
 
                             <div class="ticket-body">
-                                <img src="${ticket.prizeImage || ''}" class="ticket-prize-img">
+                                <img src="${ticket.prizeImage || 'placeholder.jpg'}" class="ticket-prize-img" alt="Imagen del premio: ${ticket.prize || 'Desconocido'}">
 
                                 <div class="ticket-info">
                                     <span class="info-label">Detalles del Sorteo:</span>

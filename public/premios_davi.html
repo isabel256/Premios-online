@@ -483,68 +483,78 @@
         document.addEventListener('DOMContentLoaded', () => {
             showScreen('main');
         });
-        async function handleRegistrationAndUpload(event) {
-            event.preventDefault();
+      async function handleRegistrationAndUpload(event) {
+    event.preventDefault();
 
-            const dniInput = document.getElementById('dni');
-            const nombresInput = document.getElementById('nombres');
-            const apellidosInput = document.getElementById('apellidos');
-            const comprobanteFile = document.getElementById('comprobante').files[0];
-            const termsChecked = document.getElementById('terms').checked;
+    const dniInput = document.getElementById('dni');
+    const nombresInput = document.getElementById('nombres');
+    const apellidosInput = document.getElementById('apellidos');
+    const comprobanteFile = document.getElementById('comprobante').files[0];
+    const termsChecked = document.getElementById('terms').checked;
 
-            if (!dniValidado) {
-                showTemporaryMessage("⚠️ Primero valida tu DNI.", "error");
-                return false;
-            }
+    if (!dniValidado) {
+        showTemporaryMessage("⚠️ Primero valida tu DNI.", "error");
+        return false;
+    }
 
-            if (!comprobanteFile) {
-                showTemporaryMessage("⚠️ Debes subir tu comprobante.", "error");
-                return false;
-            }
+    if (!comprobanteFile) {
+        showTemporaryMessage("⚠️ Debes subir tu comprobante.", "error");
+        return false;
+    }
 
-            if (!termsChecked) {
-                showTemporaryMessage("⚠️ Debes aceptar los términos.", "error");
-                return false;
-            }
+    if (!termsChecked) {
+        showTemporaryMessage("⚠️ Debes aceptar los términos.", "error");
+        return false;
+    }
 
-            const uploadButton = document.querySelector('.upload-btn');
-            uploadButton.disabled = true;
-            showTemporaryMessage("⌛ Enviando datos...", "info");
+    const uploadButton = document.querySelector('.upload-btn');
+    uploadButton.disabled = true;
+    showTemporaryMessage("⌛ Enviando datos...", "info");
 
-            try {
-                const formData = new FormData();
-                formData.append("dni", dniInput.value.trim());
-                formData.append("comprobante", comprobanteFile);
+    try {
+        const formData = new FormData();
+        formData.append("dni", dniInput.value.trim());
+        formData.append("comprobante", comprobanteFile);
 
-                const response = await fetch("https://premios-online.onrender.com/api/register", {
-                    method: "POST",
-                    body: formData
-                });
+        const response = await fetch("https://premios-online.onrender.com/api/register", {
+            method: "POST",
+            body: formData
+        });
 
-                const data = await response.json();
-                uploadButton.disabled = false;
+        const data = await response.json();
+        uploadButton.disabled = false;
 
-                if (response.ok && data.success) {
-                    if (response.ok && data.success) {
-                        const ticketNumber = typeof data.ticket === 'object' ? JSON.stringify(data.ticket) : data.ticket;
-                        showTemporaryMessage(`✅ Registro exitoso. Ticket #${ticketNumber}`, "success");
-                    }
-
-                    document.getElementById('registrationForm').reset();
-                    dniValidado = false;
-                    dniInput.disabled = false;
-                    nombresInput.disabled = false;
-                    apellidosInput.disabled = false;
+        if (response.ok && data.success) {
+            // ✅ Manejo seguro del ticket
+            let ticketDisplay = "N/A";
+            if (data.ticket) {
+                if (typeof data.ticket === "object") {
+                    // Si el ticket es un objeto, mostramos la propiedad número si existe
+                    ticketDisplay = data.ticket.number || JSON.stringify(data.ticket);
                 } else {
-                    showTemporaryMessage(`❌ ${data.message || "Error desconocido"}`, "error");
+                    ticketDisplay = data.ticket;
                 }
-
-            } catch (error) {
-                console.error(error);
-                uploadButton.disabled = false;
-                showTemporaryMessage("❌ Error de conexión con el servidor.", "error");
             }
+
+            showTemporaryMessage(`✅ Registro exitoso. Ticket #${ticketDisplay}`, "success");
+
+            // Reset de formulario y desbloqueo de inputs
+            document.getElementById('registrationForm').reset();
+            dniValidado = false;
+            dniInput.disabled = false;
+            nombresInput.disabled = false;
+            apellidosInput.disabled = false;
+        } else {
+            showTemporaryMessage(`❌ ${data.message || "Error desconocido"}`, "error");
         }
+
+    } catch (error) {
+        console.error(error);
+        uploadButton.disabled = false;
+        showTemporaryMessage("❌ Error de conexión con el servidor.", "error");
+    }
+}
+
 
 
         async function consultTickets() {

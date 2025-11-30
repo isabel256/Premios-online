@@ -10,7 +10,7 @@ const router = express.Router();
  * GET /api/dni/validate?dni=XXXXXXXX
  * Consulta el DNI con una API externa para validar su existencia y obtener el nombre.
  */
-router.get("/validate", async (req, res) => {
+router.get("/", async (req, res) => {
     try {
         const { dni } = req.query;
 

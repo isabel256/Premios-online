@@ -21,7 +21,8 @@
         <div class="container">
             <div class="nav-content">
                 <div class="announcement-bar">
-                    <marquee behavior="scroll" direction="left">🎉 ¡El sorteo se realizará el miercoles 31 de diciembre a las 3:00
+                    <marquee behavior="scroll" direction="left">🎉 ¡El sorteo se realizará el miercoles 31 de diciembre
+                        a las 3:00
                         p.m. y se transmitirá por
                         nuestra página oficial de Facebook: Importaciones Davicross! 🎉</marquee>
                 </div>
@@ -71,11 +72,13 @@
                                     <div class="form-group">
                                         <label for="nombres">Nombres</label>
                                         <input type="text" id="nombres" name="nombres" placeholder="Tus nombres"
-                                            required disabled> </div>
+                                            required disabled>
+                                    </div>
                                     <div class="form-group">
                                         <label for="apellidos">Apellidos</label>
                                         <input type="text" id="apellidos" name="apellidos" placeholder="Tus apellidos"
-                                            required disabled> </div>
+                                            required disabled>
+                                    </div>
                                 </div>
                                 <div>
                                     <div class="form-group">
@@ -274,7 +277,7 @@
                             <p id="resultName"></p>
                             <p>Tus Tickets Adquiridos:</p>
                             <ul class="ticket-list" id="ticketList">
-                                </ul>
+                            </ul>
                         </div>
                     </div>
                 </div>
@@ -331,7 +334,7 @@
     <script>
         // --- URLs y Endpoints ---
         // Se define un nuevo endpoint SECURO para la validación de DNI
-        const DNI_VALIDATE_API_URL = 'https://premios-online.onrender.com/api/validate-dni';
+        const DNI_VALIDATE_API_URL = 'https://premios-online.onrender.com/api/dni';
         const BACKEND_API_URL = 'https://premios-online.onrender.com/api/register';
         const TICKETS_API_URL = 'https://premios-online.onrender.com/api/tickets';
 
@@ -541,7 +544,7 @@
             try {
                 const formData = new FormData();
                 // Usamos el valor del input DNI readonly
-                formData.append("dni", dniInput.value.trim()); 
+                formData.append("dni", dniInput.value.trim());
                 formData.append("whatsapp", document.getElementById('whatsapp-register').value.trim()); // Añadido whatsapp para que el backend lo guarde
                 formData.append("departamento", document.getElementById('departamento').value); // Añadido departamento
                 formData.append("comprobante", comprobanteFile);
@@ -561,7 +564,7 @@
                     // Resetear el formulario y el estado de validación
                     document.getElementById('registrationForm').reset();
                     dniValidado = false;
-                    
+
                     // Restaurar campos a su estado inicial
                     dniInput.removeAttribute('readonly');
                     searchDniBtn.style.display = 'inline-block';
@@ -622,8 +625,8 @@
 
                             <span class="ticket-status" 
                                 style="background:${ticket.status === 'Ganador'
-                                        ? 'var(--secondary-color)'
-                                        : 'var(--success-color)'};">
+                                    ? 'var(--secondary-color)'
+                                    : 'var(--success-color)'};">
                                 ${ticket.status}
                             </span>
 

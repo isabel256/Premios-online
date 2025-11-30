@@ -65,7 +65,7 @@ const validateComprobanteWithOCR = async (filePath) => {
 // POST /api/register
 router.post("/", upload.single("comprobante"), async (req, res) => {
     // Definimos el path para asegurar la limpieza en caso de error
-    const comprobantePath = req.file ? req.file.path : null; 
+    const comprobantePath = req.file ? req.file.secure_url: null; 
     
     try {
         const { dni, nroOperacion } = req.body; // 4. Capturamos nroOperacion manual

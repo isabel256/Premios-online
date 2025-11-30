@@ -525,7 +525,11 @@
                 uploadButton.disabled = false;
 
                 if (response.ok && data.success) {
-                    showTemporaryMessage(`✅ Registro exitoso. Ticket #${data.ticket}`, "success");
+                    if (response.ok && data.success) {
+                        const ticketNumber = typeof data.ticket === 'object' ? JSON.stringify(data.ticket) : data.ticket;
+                        showTemporaryMessage(`✅ Registro exitoso. Ticket #${ticketNumber}`, "success");
+                    }
+
                     document.getElementById('registrationForm').reset();
                     dniValidado = false;
                     dniInput.disabled = false;

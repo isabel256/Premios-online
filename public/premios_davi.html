@@ -31,7 +31,7 @@
                         <i class="bi bi-trophy"></i><span class="txt-nav">Ver premios</span>
                     </button>
                     <button id="tickets-nav-btn" class="nav-btn" onclick="showScreen('tickets', this)">
-                        <i class="bi bi-ticket"></i><span class="txt-nav">Mis tickets</span>
+                        <i class="bi bi-journal-text"></i><span class="txt-nav">Mis tickets</span>
                     </button>
                     <button id="whatsapp-btn" class="nav-btn"
                         onclick="window.location.href='https://wa.me/51967025756' ">
@@ -65,8 +65,11 @@
                                         <div class="input-with-button">
                                             <input type="text" id="dni" name="dni" placeholder="Ingresa tu documento"
                                                 inputmode="numeric" pattern="\d{8}" maxlength="8" required>
-                                            <button class="btn-validar" type="button" name="search"
-                                                id="search">Validar</button>
+                                            <div class="div_boton">
+                                                <span id="load-btn"  class="longdni"></span>
+                                                <button class="btn-validar" type="button" name="search" id="search">Validar</button>
+
+                                            </div>
                                         </div>
                                     </div>
                                     <div class="form-group">
@@ -199,7 +202,7 @@
                                 </button>
                             </div>
                         </div>
-                        <div class="prize-card">
+                        <!-- <div class="prize-card">
                             <div class="prize-image">
                                 <img src="https://www.yamaha-motor.com.pe/file/v4685047748609769303/general/bloque01_r15_abs_peru.jpg"
                                     alt="Motocicleta Yamaha R15, Tercer Premio">
@@ -250,7 +253,7 @@
                                     <i class="bi bi-cart-fill"></i> Comprar Ticket
                                 </button>
                             </div>
-                        </div>
+                        </div> -->
                     </div>
                 </div>
             </div>
@@ -259,7 +262,7 @@
         <section id="tickets" class="screen">
             <div class="container">
                 <div class="main-content tickets-section">
-                    <h2 class="tickets-title"><i class="bi bi-ticket-fill"></i>MIS TICKETS</h2>
+                    <h2 class="tickets-title"><i class="bi bi-journal-text"></i> MIS TICKETS </i></h2>
                     <p>Ingresa tu DNI para ver los números de ticket que tienes asignados.</p>
 
                     <div class="consultation-form">
@@ -325,6 +328,8 @@
             <div class="legal-links">
                 <a href="#">Política de Privacidad</a> | <a href="#">Términos y Condiciones</a>
             </div>
+
+
         </div>
     </footer>
 
@@ -346,6 +351,7 @@
         const nombresInput = document.getElementById('nombres');
         const apellidosInput = document.getElementById('apellidos');
         const submitButton = document.getElementById('submitBtn');
+        const load_btn = document.getElementById('load-btn');
 
         let currentScreenId = 'main'; // Pantalla inicial
         let dniValidado = false;
@@ -353,6 +359,22 @@
         // ----------------------------------------------------
         // FUNCIÓN DE VALIDACIÓN DE DNI (Ajustada para seguridad)
         // ----------------------------------------------------
+        // searchDniBtn.addEventListener("click", btnvalidarrotate);
+        function btnvalidarrotate() {
+            // const loadBtn = document.getElementById("load-btn");
+
+            searchDniBtn.addEventListener("click", () => {
+                load_btn.style.display = 'none'; // reinicia
+                void load_btn.offsetWidth;           // TRUCO para reiniciar animación
+                load_btn.style.display = 'block';
+                load_btn.style.flexDirection = 'row';
+                console.log("CLICK!");
+               
+            });
+            //  searchDniBtn.innerHTML=`<span class="longdni">⌛</span>`;
+
+
+        }
         async function traer() {
             const dni = dniInput.value.trim();
 
@@ -362,8 +384,20 @@
             }
 
             dniInput.disabled = true; // Deshabilitar DNI mientras se valida
-            searchDniBtn.disabled = true;
+
+            btnvalidarrotate();
+           
+           load_btn.style.display = 'block';
+             load_btn.textContent = '⌛'
+          
+             setTimeout(()=>{
+                 load_btn.style.display = 'none';
+
+             },1000)
+
+
             showTemporaryMessage("⌛ Validando DNI...", "info");
+
 
 
             try {
@@ -526,47 +560,29 @@
             const comprobanteFile = document.getElementById('comprobante').files[0];
             const termsChecked = document.getElementById('terms').checked;
 
-            if (!dniValidado) {
-                showTemporaryMessage("⚠️ Por favor, valida tu DNI primero.", "error");
-                return false;
-            }
-            if (!comprobanteFile) {
-                showTemporaryMessage("⚠️ Debes subir tu comprobante de pago.", "error");
-                return false;
-            }
-            if (!termsChecked) {
-                showTemporaryMessage("⚠️ Debes aceptar los términos y condiciones.", "error");
-                return false;
-            }
+            if (!dniValidado) return showTemporaryMessage("⚠️ Valida tu DNI primero.", "error");
+            if (!comprobanteFile) return showTemporaryMessage("⚠️ Debes subir tu comprobante.", "error");
+            if (!termsChecked) return showTemporaryMessage("⚠️ Acepta los términos y condiciones.", "error");
 
             submitButton.disabled = true;
-            showTemporaryMessage("⌛ Enviando datos y subiendo comprobante...", "info");
+            showTemporaryMessage("⌛ Enviando datos...", "info");
 
             try {
                 const formData = new FormData();
-                // Usamos el valor del input DNI readonly
                 formData.append("dni", dniInput.value.trim());
-                formData.append("whatsapp", document.getElementById('whatsapp-register').value.trim()); // Añadido whatsapp para que el backend lo guarde
-                formData.append("departamento", document.getElementById('departamento').value); // Añadido departamento
+                formData.append("whatsapp", document.getElementById('whatsapp-register').value.trim());
+                formData.append("departamento", document.getElementById('departamento').value);
                 formData.append("comprobante", comprobanteFile);
 
-                const response = await fetch(BACKEND_API_URL, {
-                    method: "POST",
-                    body: formData
-                });
+                const response = await fetch(BACKEND_API_URL, { method: "POST", body: formData });
+                const data = await response.json(); // parsea JSON directamente
 
-                const data = await response.json();
                 submitButton.disabled = false;
 
                 if (response.ok && data.success) {
-                    const ticketNumber = data.ticket; // Asegurarse de que el backend solo devuelva el número
-                    showTemporaryMessage(`✅ ¡Felicidades! Registro exitoso. Tu Ticket es #${ticketNumber}`, "success");
-
-                    // Resetear el formulario y el estado de validación
+                    showTemporaryMessage(`✅ Registro exitoso. Ticket: #${data.ticket}`, "success");
                     document.getElementById('registrationForm').reset();
                     dniValidado = false;
-
-                    // Restaurar campos a su estado inicial
                     dniInput.removeAttribute('readonly');
                     searchDniBtn.style.display = 'inline-block';
                     nombresInput.removeAttribute('readonly');
@@ -574,18 +590,19 @@
                     nombresInput.disabled = true;
                     apellidosInput.disabled = true;
                     submitButton.disabled = true;
-
                 } else {
-                    showTemporaryMessage(`❌ ${data.message || "Error desconocido en el registro"}`, "error");
+                    showTemporaryMessage(`❌ ${data.message || "Error desconocido"}`, "error");
                 }
 
             } catch (error) {
-                console.error(error);
+                console.error("Error conexión backend:", error);
                 submitButton.disabled = false;
-                showTemporaryMessage("❌ Error de conexión con el servidor de registro.", "error");
+                showTemporaryMessage("❌ Error de conexión con el servidor.", "error");
             }
+
             return false;
         }
+
 
 
         // ----------------------------------------------------
